@@ -3,20 +3,20 @@ using UnityEngine;
 [RequireComponent(typeof(HingeJoint))]
 public class Swings : MonoBehaviour
 {
-    [SerializeField] private float _motorForce;
+    [SerializeField] private float _motorForce = 10f;
     [SerializeField] private float _targetVelocity = 10f;
-    [SerializeField] private float _frequency;
+    [SerializeField] private float _frequency = 2f;
+    [SerializeField] private float _initialPhaseOffset = 0.5f;
 
     private HingeJoint _joint;
-    private JointMotor _motor;
     private float _elapsedTime;
     private int _direction = 1;
 
     private void Awake()
     {
         _joint = GetComponent<HingeJoint>();
-        _motor.targetVelocity = _targetVelocity;
-        SetMotorForce(_motorForce);
+        _elapsedTime = _frequency * _initialPhaseOffset;
+        UpdateMotor();
     }
 
     private void Update()
@@ -34,19 +34,15 @@ public class Swings : MonoBehaviour
             {
                 _elapsedTime -= _frequency;
                 _direction *= -1;
+                UpdateMotor();
             }
-            
-            SetMotorForce(_motorForce * _direction);
-            Debug.Log("force set to: " + _direction);
-            Debug.Log("joint.motor.force after assign: " + _joint.motor.force);
         }
     }
 
-    private void SetMotorForce(float force)
+    private void UpdateMotor()
     {
-        JointMotor newMotor = _joint.motor;
-        newMotor.force = force;
-        newMotor.targetVelocity = _targetVelocity;
-        _joint.motor = newMotor;
+        JointMotor motor = _joint.motor;
+        motor.targetVelocity = _targetVelocity * _direction;
+        _joint.motor = motor;
     }
 }
