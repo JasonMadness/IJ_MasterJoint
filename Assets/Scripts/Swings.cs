@@ -1,20 +1,21 @@
-using System;
 using UnityEngine;
 
 [RequireComponent(typeof(HingeJoint))]
 public class Swings : MonoBehaviour
 {
     [SerializeField] private float _motorForce;
+    [SerializeField] private float _targetVelocity = 10f;
     [SerializeField] private float _frequency;
 
     private HingeJoint _joint;
-    private JointMotor _motor = new();
-    private float _defaultTargetVelocity = 10f;
-    private float _elapsedTime; 
+    private JointMotor _motor;
+    private float _elapsedTime;
+    private int _direction = 1;
 
     private void Awake()
     {
         _joint = GetComponent<HingeJoint>();
+        _motor.targetVelocity = _targetVelocity;
         SetMotorForce(_motorForce);
     }
 
@@ -27,25 +28,25 @@ public class Swings : MonoBehaviour
 
         if (_joint.useMotor)
         {
-            
-        
             _elapsedTime += Time.deltaTime;
-            if (_elapsedTime > _frequency)
-                _elapsedTime = -_frequency;
 
-            int sing = Math.Sign(_elapsedTime);
-            Debug.Log("Elaps: " + _elapsedTime);
-            Debug.Log(sing);
+            if (_elapsedTime > _frequency)
+            {
+                _elapsedTime -= _frequency;
+                _direction *= -1;
+            }
             
-            SetMotorForce(_motorForce * sing);
-            Debug.Log("force:" + _joint.motor.force);
+            SetMotorForce(_motorForce * _direction);
+            Debug.Log("force set to: " + _direction);
+            Debug.Log("joint.motor.force after assign: " + _joint.motor.force);
         }
     }
 
     private void SetMotorForce(float force)
     {
-        _motor.force = force;
-        _motor.targetVelocity = _defaultTargetVelocity;
-        _joint.motor = _motor;
+        JointMotor newMotor = _joint.motor;
+        newMotor.force = force;
+        newMotor.targetVelocity = _targetVelocity;
+        _joint.motor = newMotor;
     }
 }
