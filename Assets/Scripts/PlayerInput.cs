@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private Swings _swings;
+    [SerializeField] private KeyCode _swingsKey = KeyCode.Space;
+    
+    
 }
