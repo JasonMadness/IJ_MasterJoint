@@ -3,7 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(HingeJoint))]
 public class Swings : MonoBehaviour
 {
-    [SerializeField] private float _motorForce = 10f;
     [SerializeField] private float _targetVelocity = 10f;
     [SerializeField] private float _frequency = 2f;
     [SerializeField] private float _initialPhaseOffset = 0.5f;
@@ -21,11 +20,6 @@ public class Swings : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _joint.useMotor = !_joint.useMotor;
-        }
-
         if (_joint.useMotor)
         {
             _elapsedTime += Time.deltaTime;
