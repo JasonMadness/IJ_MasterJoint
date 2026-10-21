@@ -38,8 +38,11 @@ public class Swings : MonoBehaviour
             }
         }
     }
-    
-    
+
+    public void ToggleMotor()
+    {
+        _joint.useMotor = !_joint.useMotor;
+    }
 
     private void UpdateMotor()
     {
