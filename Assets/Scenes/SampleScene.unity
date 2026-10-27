@@ -171,7 +171,7 @@ SpringJoint:
   m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: 0, y: 1.8, z: 2}
   serializedVersion: 2
-  m_Spring: 35
+  m_Spring: 0
   m_Damper: 3
   m_MinDistance: 0
   m_MaxDistance: 0.2
@@ -1917,6 +1917,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1232877287}
   - component: {fileID: 1232877286}
+  - component: {fileID: 1232877288}
   m_Layer: 0
   m_Name: Catapult v2
   m_TagString: Untagged
@@ -1969,6 +1970,20 @@ Transform:
   - {fileID: 793387214}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1232877288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232877285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9389073a5879b40b3a58e9bed88bd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _springJoint: {fileID: 66881630}
+  _fireForce: 35
 --- !u!1 &1364780970
 GameObject:
   m_ObjectHideFlags: 0
@@ -2636,6 +2651,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _swings: {fileID: 1561795667}
   _swingsKey: 32
+  _catapult: {fileID: 0}
+  _catapultFireKey: 102
+  _catapultReloadKey: 114
 --- !u!4 &1806681090
 Transform:
   m_ObjectHideFlags: 0
