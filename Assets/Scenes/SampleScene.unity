@@ -1982,8 +1982,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d9389073a5879b40b3a58e9bed88bd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _projectilePrefab: {fileID: 4048225251645634629, guid: 244cdf8e1ac71d342bb55bd2c8731631, type: 3}
+  _armRigidbody: {fileID: 66881632}
   _springJoint: {fileID: 66881630}
   _fireForce: 35
+  _projectileInstanceDelay: 1
 --- !u!1 &1364780970
 GameObject:
   m_ObjectHideFlags: 0
@@ -2651,7 +2654,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _swings: {fileID: 1561795667}
   _swingsKey: 32
-  _catapult: {fileID: 0}
+  _catapult: {fileID: 1232877288}
   _catapultFireKey: 102
   _catapultReloadKey: 114
 --- !u!4 &1806681090
@@ -2925,7 +2928,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2844948493906517346, guid: 244cdf8e1ac71d342bb55bd2c8731631, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.07
+      value: 0.92
       objectReference: {fileID: 0}
     - target: {fileID: 2844948493906517346, guid: 244cdf8e1ac71d342bb55bd2c8731631, type: 3}
       propertyPath: m_LocalPosition.z
