@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(HingeJoint))]
@@ -8,34 +9,42 @@ public class Swings : MonoBehaviour
     [SerializeField] private float _initialPhaseOffset = 0.5f;
 
     private HingeJoint _joint;
-    private float _elapsedTime;
     private int _direction = 1;
+    private Coroutine _swingRoutine;
 
     private void Awake()
     {
         _joint = GetComponent<HingeJoint>();
-        _elapsedTime = _frequency * _initialPhaseOffset;
         UpdateMotor();
-    }
-
-    private void Update()
-    {
-        if (_joint.useMotor)
-        {
-            _elapsedTime += Time.deltaTime;
-
-            if (_elapsedTime > _frequency)
-            {
-                _elapsedTime -= _frequency;
-                _direction *= -1;
-                UpdateMotor();
-            }
-        }
     }
 
     public void ToggleMotor()
     {
         _joint.useMotor = !_joint.useMotor;
+
+        if (_joint.useMotor)
+        {
+            _swingRoutine = StartCoroutine(SwingRoutine());
+        }
+        else if (_swingRoutine != null)
+        {
+            StopCoroutine(_swingRoutine);
+            _swingRoutine = null;
+        }
+    }
+
+    private IEnumerator SwingRoutine()
+    {
+        yield return new WaitForSeconds(_frequency * _initialPhaseOffset);
+
+        while (_joint.useMotor)
+        {
+            _direction *= -1;
+            UpdateMotor();
+            yield return new WaitForSeconds(_frequency);
+        }
+
+        _swingRoutine = null;
     }
 
     private void UpdateMotor()
