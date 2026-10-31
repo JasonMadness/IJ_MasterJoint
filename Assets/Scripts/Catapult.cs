@@ -5,7 +5,7 @@ public class Catapult : MonoBehaviour
     [SerializeField] private Rigidbody _armRigidbody;
     [SerializeField] private SpringJoint _springJoint;
     [SerializeField] private Loader _loader;
-    [SerializeField] private float _fireForce = 35f;
+    [SerializeField] private float _fireSpring = 35f;
 
     private bool _loaded = true;
     
@@ -14,7 +14,7 @@ public class Catapult : MonoBehaviour
         if (_loaded == false)
             return;
         
-        _springJoint.spring = _fireForce;
+        _springJoint.spring = _fireSpring;
         _armRigidbody.WakeUp();
         _loaded = false;
     }
