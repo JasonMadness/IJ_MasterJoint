@@ -7,7 +7,7 @@ public class Catapult : MonoBehaviour
     [SerializeField] private Loader _loader;
     [SerializeField] private float _fireForce = 35f;
 
-    private bool _loaded;
+    private bool _loaded = true;
     
     public void Fire()
     {
@@ -21,7 +21,7 @@ public class Catapult : MonoBehaviour
 
     public void Reload()
     {
-        if (_loader)
+        if (_loaded)
             return;
         
         _loader.Reload();
