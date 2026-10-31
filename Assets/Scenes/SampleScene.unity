@@ -1918,6 +1918,7 @@ GameObject:
   - component: {fileID: 1232877287}
   - component: {fileID: 1232877286}
   - component: {fileID: 1232877288}
+  - component: {fileID: 1232877289}
   m_Layer: 0
   m_Name: Catapult v2
   m_TagString: Untagged
@@ -1982,10 +1983,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d9389073a5879b40b3a58e9bed88bd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectilePrefab: {fileID: 4048225251645634629, guid: 244cdf8e1ac71d342bb55bd2c8731631, type: 3}
   _armRigidbody: {fileID: 66881632}
   _springJoint: {fileID: 66881630}
+  _loader: {fileID: 1232877289}
   _fireForce: 35
+--- !u!114 &1232877289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232877285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca9d0346a1d04379a3db2d6b3c226efa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: -4170998144477172821, guid: 244cdf8e1ac71d342bb55bd2c8731631, type: 3}
+  _armRigidbody: {fileID: 66881632}
+  _springJoint: {fileID: 66881630}
   _projectileInstanceDelay: 1
 --- !u!1 &1364780970
 GameObject:
@@ -2633,8 +2649,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1806681090}
   - component: {fileID: 1806681089}
+  - component: {fileID: 1806681091}
   m_Layer: 0
-  m_Name: Input
+  m_Name: Game
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2652,9 +2669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdc90c443b5d67e43b458a4d1ece18fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _swings: {fileID: 1561795667}
   _swingsKey: 32
-  _catapult: {fileID: 1232877288}
   _catapultFireKey: 102
   _catapultReloadKey: 114
 --- !u!4 &1806681090
@@ -2672,6 +2687,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1806681091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806681088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b33c3f14bb44c0aebc53d752d6540c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _input: {fileID: 1806681089}
+  _swings: {fileID: 1561795667}
+  _catapult: {fileID: 1232877288}
 --- !u!1 &1808534924
 GameObject:
   m_ObjectHideFlags: 0
