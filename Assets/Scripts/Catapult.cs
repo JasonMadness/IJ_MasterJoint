@@ -1,30 +1,30 @@
-using System.Collections;
 using UnityEngine;
 
 public class Catapult : MonoBehaviour
 {
-    [SerializeField] private GameObject _projectilePrefab;
     [SerializeField] private Rigidbody _armRigidbody;
     [SerializeField] private SpringJoint _springJoint;
+    [SerializeField] private Loader _loader;
     [SerializeField] private float _fireForce = 35f;
-    [SerializeField] private float _projectileInstanceDelay = 1f;
+
+    private bool _loaded;
     
     public void Fire()
     {
+        if (_loaded == false)
+            return;
+        
         _springJoint.spring = _fireForce;
         _armRigidbody.WakeUp();
+        _loaded = false;
     }
 
     public void Reload()
     {
-        StartCoroutine(ReloadCoroutine());
-    }
-
-    private IEnumerator ReloadCoroutine()
-    {
-        _springJoint.spring = 0f;
-        _armRigidbody.WakeUp();
-        yield return new WaitForSeconds(_projectileInstanceDelay);
-        Instantiate(_projectilePrefab);
+        if (_loader)
+            return;
+        
+        _loader.Reload();
+        _loaded = true;
     }
 }
